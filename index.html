@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="manifest" href="/manifest.json">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+        
+        /* CSS für die Farben der Differenzanzeige */
+        #timeDifference {
+            font-size: 18px; /* Größere Schriftgröße für bessere Lesbarkeit */
+        }
+        
+        .positive {
+            color: green; /* Grün für positive Werte */
+        }
+        
+        .negative {
+            color: red; /* Rot für negative Werte */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="timeDifference"></div> <!-- Differenzanzeige ganz oben -->
+        <br> <!-- Leerzeile -->
+        <div>
+            <label for="endTime">Endzeit:</label>
+            <input type="time" id="endTime" onchange="updateProjectedEndTime()">
+        </div>
+        <br> <!-- Leerzeile -->
+        <div id="projectedEndTimeDisplay"></div>
+        <div>
+            <label for="duration">Abschnittsdauer (Minuten):</label>
+            <input type="number" id="duration" style="width: 50px;">
+        </div>
+        <br> <!-- Leerzeile -->
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stopp</button>
+        <button id="addButton">Addieren</button>
+        <button id="subtractButton">Subtrahieren</button>
+        <div id="timer"></div>
+    </div>
+    
+    <script src="script.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        console.log('Service Worker wurde registriert:', registration);
+      }, function(error) {
+        console.log('Service Worker Registrierung fehlgeschlagen:', error);
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
